@@ -1,0 +1,5 @@
+---
+  - include_tasks: install.yml
+    tags: [vlan, vlan_install, install]
+  - include_tasks: config.yml
+    tags: [vlan, vlan_config, config]

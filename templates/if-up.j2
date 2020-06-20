@@ -1,0 +1,12 @@
+#!/bin/sh
+
+{{ ansible_managed|comment }}
+
+if [ "$IFACE" = "{{ vlan_transport_interface }}" ]; then
+        ovs-vsctl add-br {{ vlan_interface }}
+        ovs-vsctl set bridge {{ vlan_interface }} stp_enable=true
+        ip address add {{ vlan_net }} dev {{ vlan_interface }}
+        ip link set {{ vlan_interface }} up
+        ifconfig {{ vlan_interface }} up
+        /etc/network/{{ vlan_interface }}-ovs-ports
+fi

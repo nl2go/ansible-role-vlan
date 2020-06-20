@@ -1,0 +1,7 @@
+---
+- name: Install Open vSwitch
+  package:
+    name: openvswitch-switch
+    state: present
+
+

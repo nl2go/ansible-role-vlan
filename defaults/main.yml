@@ -1,0 +1,6 @@
+---
+vlan_group: all
+vlan_ip: 172.0.0.1
+vlan_interface: vlan0
+vlan_netmask: 255.255.255.0
+vlan_transport_interface: "{{ ansible_default_ipv4.interface }}"

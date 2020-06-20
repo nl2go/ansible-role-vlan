@@ -1,0 +1,14 @@
+#!/bin/sh
+
+{{ ansible_managed|comment }}
+
+OVS_PORTS="$(ovs-vsctl list-ports '{{ vlan_interface }}')"
+{% for public_node_ip in vlan_public_node_ips %}
+case "$OVS_PORTS" in
+  *{{ public_node_ip | checksum }}*)
+     ;;
+  *)
+    ovs-vsctl add-port {{ vlan_interface }} gre{{ public_node_ip | checksum }} -- set interface gre{{ public_node_ip | checksum }} type=gre options:remote_ip={{ public_node_ip }}
+    ;;
+esac
+{% endfor %}

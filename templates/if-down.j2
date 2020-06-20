@@ -1,0 +1,9 @@
+#!/bin/sh
+
+{{ ansible_managed|comment }}
+
+if [ "$IFACE" = "{{ vlan_transport_interface }}" ]; then
+        ifconfig {{ vlan_interface }} down
+        ip link delete {{ vlan_interface }}
+        ovs-vsctl del-br {{ vlan_interface }}
+fi

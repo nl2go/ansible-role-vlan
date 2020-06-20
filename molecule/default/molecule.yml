@@ -1,0 +1,43 @@
+---
+driver:
+  name: hetznercloud
+lint: |
+  set -e
+  yamllint .
+platforms:
+  - name: ${MOLECULE_TEST_SCOPE:-default}-vlan-1
+    server_type: cx11
+    image: ${MOLECULE_PLATFORM:-debian-10}
+  - name: ${MOLECULE_TEST_SCOPE:-default}-vlan-2
+    server_type: cx11
+    image: ${MOLECULE_PLATFORM:-debian-10}
+  - name: ${MOLECULE_TEST_SCOPE:-default}-vlan-3
+    server_type: cx11
+    image: ${MOLECULE_PLATFORM:-debian-10}
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+  inventory:
+    group_vars:
+      all:
+        foo: bar
+    host_vars:
+      "${MOLECULE_TEST_SCOPE:-default}-vlan-1":
+        vlan_ip: 172.0.0.2
+      "${MOLECULE_TEST_SCOPE:-default}-vlan-2":
+        vlan_ip: 172.0.0.3
+      "${MOLECULE_TEST_SCOPE:-default}-vlan-3":
+        vlan_ip: 172.0.0.4
+  lint: |
+    set -e
+    ansible-lint
+  playbooks:
+    create: ../resources/playbooks/create.yml
+    destroy: ../resources/playbooks/destroy.yml
+verifier:
+  name: ansible
+  lint: |
+    set -e
+    ansible-lint

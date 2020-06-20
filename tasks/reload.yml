@@ -1,0 +1,11 @@
+---
+- name: Disable and delete interface
+  command: /etc/network/if-down.d/{{ vlan_interface }}
+  environment:
+    IFACE: "{{ vlan_transport_interface }}"
+  when: vlan_interface in ip_link_list_result.stdout
+
+- name: Configure and enable interface
+  environment:
+    IFACE: "{{ vlan_transport_interface }}"
+  command: /etc/network/if-up.d/{{ vlan_interface }}

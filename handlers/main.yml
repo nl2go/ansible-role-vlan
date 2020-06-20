@@ -1,0 +1,3 @@
+---
+- name: Reload interface
+  include_tasks: reload.yml

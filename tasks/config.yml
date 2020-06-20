@@ -1,0 +1,31 @@
+---
+- name: Determine public node IPs
+  set_fact:
+    vlan_public_node_ips: "{{ groups[vlan_group] | map('extract', hostvars, ['ansible_host']) | difference([ansible_host]) | list }}"
+    vlan_net: "{{ vlan_ip }}/{{ vlan_netmask }}"
+
+- name: Create if-down config
+  template:
+    src: if-down.j2
+    dest: /etc/network/if-down.d/{{ vlan_interface }}
+    mode: '0755'
+  notify: Reload interface
+
+- name: Create if-up config
+  template:
+    src: if-up.j2
+    dest: /etc/network/if-up.d/{{ vlan_interface }}
+    mode: '0755'
+  notify: Reload interface
+
+- name: Create ports config
+  template:
+    src: ovs-ports.j2
+    dest: /etc/network/{{ vlan_interface }}-ovs-ports
+    mode: '0755'
+  notify: Reload interface
+
+- name: Check interface status
+  command: ip link list
+  changed_when: no
+  register: ip_link_list_result
