@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/nl2go/ansible-role-vlan.svg?branch=master)](https://travis-ci.org/nl2go/ansible-role-vlan)
 [![Ansible Galaxy](https://img.shields.io/badge/role-nl2go.vlan-blue.svg)](https://galaxy.ansible.com/nl2go/vlan/)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/nl2go/ansible-role-vlan)](https://galaxy.ansible.com/nl2go/vlan)
-[![Ansible Galaxy Downloads](https://img.shields.io/ansible/role/d/48976.svg?color=blue)](https://galaxy.ansible.com/nl2go/vlan/)
+[![Ansible Galaxy Downloads](https://img.shields.io/ansible/role/d/49554.svg?color=blue)](https://galaxy.ansible.com/nl2go/vlan/)
 
 # Ansible Role: VLAN
 
