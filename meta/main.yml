@@ -1,10 +1,10 @@
 ---
 galaxy_info:
-  author: infrastructr
+  author: nl2go
   role_name: vlan
   description: An Ansible Role that manages setup and configuration of an [Open vSwitch](https://www.openvswitch.org) based VLAN.
-  company: Infrastructr
-  issue_tracker_url: https://github.com/infrastructr/ansible-role-vlan/issues
+  company: nl2go
+  issue_tracker_url: https://github.com/nl2go/ansible-role-vlan/issues
   license: MIT
   min_ansible_version: 2.7
   platforms:
